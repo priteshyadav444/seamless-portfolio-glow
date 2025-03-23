@@ -7,6 +7,7 @@ import Projects from "../components/Projects";
 import Skills from "../components/Skills";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
+import ThemeToggle from "../components/ThemeToggle";
 
 const Index = () => {
   useEffect(() => {
@@ -46,6 +47,7 @@ const Index = () => {
       <Skills />
       <Contact />
       <Footer />
+      <ThemeToggle />
     </div>
   );
 };
