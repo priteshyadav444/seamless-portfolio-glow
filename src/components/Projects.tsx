@@ -1,6 +1,7 @@
 
 import React, { useState } from "react";
 import { ExternalLink, Github, ArrowRight, Eye } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface Project {
   id: number;
@@ -66,30 +67,31 @@ const Projects = () => {
     : projects.filter(project => project.category === activeCategory);
 
   return (
-    <section id="projects" className="section-padding bg-gradient-to-b from-background to-secondary/30">
+    <section id="projects" className="section-padding bg-background dark:bg-secondary/5">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <p className="section-subtitle">My Projects</p>
           <h2 className="section-title">
-            Recent <span className="text-gradient">work</span> I've created
+            Recent <span className="text-gradient">work</span>
           </h2>
           <p className="section-description">
-            Here are some of my recent projects that showcase my skills and expertise in 
-            developing modern, responsive web applications.
+            Explore my recent projects showcasing clean code, 
+            thoughtful architecture, and attention to performance.
           </p>
         </div>
 
-        <div className="flex justify-center mb-12">
-          <div className="flex flex-wrap gap-3 justify-center p-1 bg-secondary/50 backdrop-blur-sm rounded-full">
+        <div className="flex justify-center mb-10">
+          <div className="flex flex-wrap gap-2 justify-center p-1 bg-secondary/20 dark:bg-secondary/10 backdrop-blur-sm rounded-full">
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setActiveCategory(category)}
-                className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                className={cn(
+                  "px-5 py-2 rounded-full text-sm font-medium transition-all duration-300",
                   activeCategory === category
                     ? "bg-primary text-white shadow-md"
-                    : "hover:bg-secondary/80 text-foreground/80"
-                }`}
+                    : "hover:bg-secondary/60 dark:hover:bg-secondary/20 text-foreground/80"
+                )}
               >
                 {category.charAt(0).toUpperCase() + category.slice(1)}
               </button>
@@ -97,11 +99,11 @@ const Projects = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {filteredProjects.map((project) => (
             <div
               key={project.id}
-              className="group overflow-hidden rounded-xl bg-white shadow-lg hover:shadow-xl transition-all duration-500 reveal"
+              className="group overflow-hidden rounded-xl bg-white dark:bg-black/20 border border-border dark:border-white/5 shadow-sm hover:shadow-md dark:shadow-none transition-all duration-500 reveal"
               onMouseEnter={() => setHoveredId(project.id)}
               onMouseLeave={() => setHoveredId(null)}
             >
@@ -111,43 +113,41 @@ const Projects = () => {
                   alt={project.title}
                   className="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                  <div className="p-6 w-full">
-                    <div className="flex gap-4 justify-end">
-                      {project.githubUrl && (
-                        <a
-                          href={project.githubUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="p-2 bg-white/10 backdrop-blur-md rounded-full hover:bg-white/20 transition-colors duration-300"
-                          aria-label="View on GitHub"
-                        >
-                          <Github className="h-5 w-5 text-white" />
-                        </a>
-                      )}
-                      {project.liveUrl && (
-                        <a
-                          href={project.liveUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="p-2 bg-white/10 backdrop-blur-md rounded-full hover:bg-white/20 transition-colors duration-300"
-                          aria-label="View live site"
-                        >
-                          <Eye className="h-5 w-5 text-white" />
-                        </a>
-                      )}
-                    </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-end p-4">
+                  <div className="flex gap-3">
+                    {project.githubUrl && (
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2 bg-white/10 backdrop-blur-md rounded-full hover:bg-white/20 transition-colors duration-300"
+                        aria-label="View on GitHub"
+                      >
+                        <Github className="h-5 w-5 text-white" />
+                      </a>
+                    )}
+                    {project.liveUrl && (
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2 bg-white/10 backdrop-blur-md rounded-full hover:bg-white/20 transition-colors duration-300"
+                        aria-label="View live site"
+                      >
+                        <Eye className="h-5 w-5 text-white" />
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors duration-300">{project.title}</h3>
+                <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors duration-300">{project.title}</h3>
                 <p className="text-foreground/70 mb-4 line-clamp-2">{project.description}</p>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.technologies.map((tech, index) => (
                     <span
                       key={index}
-                      className="text-xs font-medium px-3 py-1 bg-secondary rounded-full"
+                      className="text-xs font-medium px-3 py-1 bg-secondary/30 dark:bg-secondary/20 rounded-full"
                     >
                       {tech}
                     </span>
@@ -160,7 +160,7 @@ const Projects = () => {
                     rel="noopener noreferrer"
                     className="text-primary flex items-center gap-2 font-medium text-sm group"
                   >
-                    View Project
+                    View Details
                     <ArrowRight className="h-4 w-4 transform group-hover:translate-x-1 transition-transform duration-300" />
                   </a>
                 </div>
@@ -169,15 +169,15 @@ const Projects = () => {
           ))}
         </div>
 
-        <div className="text-center mt-16">
+        <div className="text-center mt-12">
           <a
-            href="https://github.com/priteshyadav444"
+            href="https://github.com/yourusername"
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-secondary inline-flex"
+            className="inline-flex items-center gap-2 bg-secondary/50 dark:bg-secondary/10 hover:bg-secondary/70 dark:hover:bg-secondary/20 text-foreground px-6 py-3 rounded-lg font-medium transition-all duration-300"
           >
-            View All Projects
-            <ArrowRight className="h-4 w-4" />
+            More on GitHub
+            <Github className="h-4 w-4" />
           </a>
         </div>
       </div>
