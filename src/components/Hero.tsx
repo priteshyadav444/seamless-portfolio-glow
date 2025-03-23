@@ -1,6 +1,6 @@
 
 import React, { useEffect, useRef } from "react";
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, Code, Briefcase, ExternalLink } from "lucide-react";
 
 const Hero = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -35,50 +35,52 @@ const Hero = () => {
     >
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-0 -left-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute bottom-0 -right-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute bottom-0 -right-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl animate-float" style={{ animationDelay: "2s" }}></div>
+        <div className="absolute top-1/3 right-20 w-40 h-40 bg-blue-400/10 rounded-full blur-2xl animate-float" style={{ animationDelay: "4s" }}></div>
       </div>
       
       <div className="container mx-auto px-4 pt-20 flex flex-col items-center text-center">
         <div className="reveal">
-          <p className="text-primary inline-block px-3 py-1 font-medium rounded-full text-sm mb-6 bg-primary/10">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-6 bg-primary/10 text-primary">
+            <Code className="h-4 w-4" />
             Full-Stack Developer
-          </p>
+          </div>
         </div>
         
         <h1 
           ref={titleRef}
-          className="text-4xl md:text-6xl lg:text-heading-1 font-bold mb-6 reveal"
+          className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 reveal"
         >
           Hello, I'm{" "}
-          <span className="text-primary inline-block relative">
+          <span className="text-gradient inline-block">
             Pritesh Yadav
-            <span className="absolute -bottom-2 left-0 w-full h-1 bg-primary/20 rounded-full"></span>
           </span>
         </h1>
         
-        <p className="text-xl md:text-body-large text-foreground/80 max-w-3xl mx-auto mb-10 reveal">
-          A passionate Full-Stack Developer building digital experiences with clean,
-          efficient code. Specializing in modern web technologies and thoughtful UI/UX design.
+        <p className="text-xl md:text-2xl text-foreground/80 max-w-3xl mx-auto mb-10 reveal font-light">
+          I build exceptional digital experiences with modern technologies and thoughtful design.
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 reveal">
           <a 
             href="#projects"
-            className="bg-primary text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-lg hover:shadow-primary/20"
+            className="btn-primary"
           >
             View My Work
+            <Briefcase className="h-5 w-5" />
           </a>
           <a 
             href="#contact"
-            className="bg-secondary text-foreground px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-lg hover:shadow-primary/10"
+            className="btn-secondary"
           >
-            Contact Me
+            Let's Connect
+            <ExternalLink className="h-5 w-5" />
           </a>
         </div>
       </div>
       
       <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <a href="#about" aria-label="Scroll down">
+        <a href="#about" aria-label="Scroll down" className="p-2 rounded-full hover:bg-primary/10 transition-colors duration-300">
           <ArrowDown className="h-6 w-6 text-primary" />
         </a>
       </div>

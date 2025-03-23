@@ -14,7 +14,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 210 40% 2%;
 
-    --primary: 210 100% 50%;
+    --primary: 222 89% 55%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 210 30% 95%;
@@ -31,7 +31,7 @@
 
     --border: 210 20% 90%;
     --input: 210 20% 90%;
-    --ring: 210 100% 50%;
+    --ring: 222 89% 55%;
 
     --radius: 0.75rem;
 
@@ -55,7 +55,7 @@
     --popover: 210 40% 3%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 100% 50%;
+    --primary: 222 89% 55%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 210 30% 10%;
@@ -72,7 +72,7 @@
 
     --border: 210 20% 20%;
     --input: 210 20% 20%;
-    --ring: 210 100% 40%;
+    --ring: 222 89% 45%;
   }
 }
 
@@ -99,15 +99,39 @@
 
 @layer components {
   .glass {
-    @apply backdrop-blur-md bg-white/70 border border-white/20 shadow-md;
+    @apply backdrop-blur-md bg-white/70 border border-white/20 shadow-lg;
   }
   
   .neo-card {
-    @apply bg-white shadow-lg rounded-xl p-6 transition-all duration-300 ease-in-out;
+    @apply bg-white shadow-lg rounded-xl p-6 transition-all duration-300 ease-in-out hover:shadow-xl;
   }
   
   .hover-card {
-    @apply transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl;
+    @apply transform transition-all duration-300 hover:-translate-y-1;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white px-6 py-3 rounded-lg font-medium 
+           transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 
+           flex items-center justify-center gap-2;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-foreground px-6 py-3 rounded-lg font-medium 
+           transition-all duration-300 hover:shadow-lg hover:shadow-primary/10
+           flex items-center justify-center gap-2;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-heading-2 font-bold mb-6;
+  }
+
+  .section-subtitle {
+    @apply text-primary font-medium mb-3;
+  }
+
+  .section-description {
+    @apply text-foreground/80 text-body-large;
   }
 }
 
@@ -123,6 +147,10 @@
   .container-padding {
     @apply px-4 sm:px-6 md:px-8 lg:px-12;
   }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary to-blue-400 bg-clip-text text-transparent;
+  }
 }
 
 /* For JavaScript intersection observers */
@@ -135,4 +163,23 @@
 .reveal.active {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Custom animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 4s ease-in-out infinite;
 }

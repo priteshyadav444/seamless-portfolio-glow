@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Zap, Check, X } from "lucide-react";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +11,7 @@ const Contact = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -20,6 +21,7 @@ const Contact = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError(false);
 
     // Simulate form submission
     setTimeout(() => {
@@ -56,14 +58,14 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="section-padding">
+    <section id="contact" className="section-padding bg-gradient-to-b from-background to-secondary/20">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <p className="text-primary font-medium mb-3">Contact Me</p>
-          <h2 className="text-3xl md:text-heading-2 font-bold mb-6">
-            Let's Work Together
+          <p className="section-subtitle">Contact Me</p>
+          <h2 className="section-title">
+            Let's <span className="text-gradient">Work Together</span>
           </h2>
-          <p className="text-foreground/80 text-body-large">
+          <p className="section-description">
             Have a project in mind or want to discuss opportunities? Feel free to reach out.
             I'm always open to new ideas and collaborations.
           </p>
@@ -72,7 +74,10 @@ const Contact = () => {
         <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
           <div className="space-y-10 reveal">
             <div>
-              <h3 className="text-xl font-bold mb-6">Get In Touch</h3>
+              <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
+                <Zap className="h-5 w-5 text-primary" />
+                Get In Touch
+              </h3>
               <p className="text-foreground/80 mb-8">
                 I'm currently available for freelance work and full-time positions.
                 If you have a project that needs coding or design skills, feel free to contact me.
@@ -83,7 +88,7 @@ const Contact = () => {
                   <a
                     key={index}
                     href={item.link}
-                    className="flex items-start gap-4 group"
+                    className="flex items-start gap-4 group p-4 rounded-xl hover:bg-white hover:shadow-md transition-all duration-300"
                     target={item.label === "Email" ? "_blank" : undefined}
                     rel="noopener noreferrer"
                   >
@@ -108,7 +113,7 @@ const Contact = () => {
                   href="https://github.com/priteshyadav444"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 bg-secondary rounded-lg hover:bg-primary/10 transition-colors duration-300"
+                  className="p-3 bg-white rounded-xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300"
                   aria-label="GitHub"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
@@ -119,7 +124,7 @@ const Contact = () => {
                   href="https://linkedin.com/in/priteshyadav444"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 bg-secondary rounded-lg hover:bg-primary/10 transition-colors duration-300"
+                  className="p-3 bg-white rounded-xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300"
                   aria-label="LinkedIn"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
@@ -130,7 +135,7 @@ const Contact = () => {
                   href="#"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 bg-secondary rounded-lg hover:bg-primary/10 transition-colors duration-300"
+                  className="p-3 bg-white rounded-xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300"
                   aria-label="Twitter"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
@@ -142,7 +147,10 @@ const Contact = () => {
           </div>
 
           <div className="glass p-8 rounded-xl reveal">
-            <h3 className="text-xl font-bold mb-6">Send Me a Message</h3>
+            <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
+              <Mail className="h-5 w-5 text-primary" />
+              Send Me a Message
+            </h3>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-foreground/70 mb-2">
@@ -155,7 +163,7 @@ const Contact = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-secondary border border-secondary/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/30 transition-all duration-300"
+                  className="w-full px-4 py-3 bg-white border border-secondary/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/30 transition-all duration-300"
                   placeholder="John Doe"
                 />
               </div>
@@ -170,7 +178,7 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-secondary border border-secondary/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/30 transition-all duration-300"
+                  className="w-full px-4 py-3 bg-white border border-secondary/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/30 transition-all duration-300"
                   placeholder="johndoe@example.com"
                 />
               </div>
@@ -185,7 +193,7 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   rows={5}
-                  className="w-full px-4 py-3 bg-secondary border border-secondary/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/30 transition-all duration-300 resize-none"
+                  className="w-full px-4 py-3 bg-white border border-secondary/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/30 transition-all duration-300 resize-none"
                   placeholder="Hi, let's talk about your project..."
                 ></textarea>
               </div>
@@ -195,13 +203,23 @@ const Contact = () => {
                 className={`w-full flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-medium text-white transition-all duration-300 ${
                   submitted
                     ? "bg-green-500"
+                    : error
+                    ? "bg-red-500"
                     : isSubmitting
                     ? "bg-primary/70 cursor-wait"
                     : "bg-primary hover:shadow-lg hover:shadow-primary/20"
                 }`}
               >
                 {submitted ? (
-                  "Message Sent!"
+                  <>
+                    <Check className="h-5 w-5" />
+                    Message Sent!
+                  </>
+                ) : error ? (
+                  <>
+                    <X className="h-5 w-5" />
+                    Error Sending
+                  </>
                 ) : isSubmitting ? (
                   <>
                     <span className="animate-pulse">Sending...</span>
@@ -209,7 +227,7 @@ const Contact = () => {
                 ) : (
                   <>
                     Send Message
-                    <Send className="h-4 w-4" />
+                    <Send className="h-5 w-5" />
                   </>
                 )}
               </button>

@@ -41,7 +41,7 @@ const Navbar = () => {
       className={cn(
         "fixed top-0 w-full z-50 transition-all duration-300",
         scrolled 
-          ? "glass py-2" 
+          ? "glass py-2 backdrop-blur-lg bg-background/80" 
           : "bg-transparent py-4"
       )}
     >
@@ -49,13 +49,13 @@ const Navbar = () => {
         <a href="#home" className="text-xl font-bold tracking-tight flex items-center gap-2">
           <span 
             className={cn(
-              "text-primary transition-all duration-300",
+              "text-gradient font-bold transition-all duration-300",
               scrolled ? "text-2xl" : "text-3xl"
             )}
           >
             PY
           </span>
-          <span className={scrolled ? "text-sm opacity-100" : "text-sm opacity-0"}>
+          <span className={scrolled ? "opacity-100 transition-opacity duration-300" : "opacity-0"}>
             Pritesh Yadav
           </span>
         </a>
@@ -67,21 +67,22 @@ const Navbar = () => {
               <li key={link.name}>
                 <a
                   href={link.url}
-                  className="text-foreground/80 hover:text-primary transition-all duration-300 text-sm font-medium"
+                  className="text-foreground/80 hover:text-primary transition-all duration-300 text-sm font-medium relative group"
                 >
                   {link.name}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
                 </a>
               </li>
             ))}
           </ul>
-          <div className="flex gap-3">
+          <div className="flex gap-4">
             {socialLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-foreground/70 hover:text-primary transition-colors duration-300"
+                className="text-foreground/70 hover:text-primary transition-colors duration-300 p-2 hover:bg-primary/10 rounded-full"
                 aria-label={link.label}
               >
                 {link.icon}
@@ -92,7 +93,7 @@ const Navbar = () => {
 
         {/* Mobile menu button */}
         <button
-          className="md:hidden text-foreground"
+          className="md:hidden text-foreground p-2 hover:bg-secondary rounded-lg"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle menu"
         >
@@ -103,7 +104,7 @@ const Navbar = () => {
       {/* Mobile menu */}
       <div
         className={cn(
-          "fixed inset-0 bg-background glass pt-20 px-4 z-40 flex flex-col justify-between transition-transform duration-300 md:hidden",
+          "fixed inset-0 glass backdrop-blur-lg pt-20 px-4 z-40 flex flex-col justify-between transition-transform duration-300 md:hidden",
           isOpen ? "translate-x-0" : "translate-x-full"
         )}
       >
@@ -128,7 +129,7 @@ const Navbar = () => {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-foreground/70 hover:text-primary transition-colors duration-300"
+                className="text-foreground/70 hover:text-primary transition-colors duration-300 p-2 hover:bg-primary/10 rounded-full"
                 aria-label={link.label}
               >
                 {link.icon}

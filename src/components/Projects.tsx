@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { ExternalLink, Github, ArrowRight } from "lucide-react";
+import { ExternalLink, Github, ArrowRight, Eye } from "lucide-react";
 
 interface Project {
   id: number;
@@ -66,29 +66,29 @@ const Projects = () => {
     : projects.filter(project => project.category === activeCategory);
 
   return (
-    <section id="projects" className="section-padding">
+    <section id="projects" className="section-padding bg-gradient-to-b from-background to-secondary/30">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <p className="text-primary font-medium mb-3">My Projects</p>
-          <h2 className="text-3xl md:text-heading-2 font-bold mb-6">
-            Recent work I've created
+          <p className="section-subtitle">My Projects</p>
+          <h2 className="section-title">
+            Recent <span className="text-gradient">work</span> I've created
           </h2>
-          <p className="text-foreground/80 text-body-large">
+          <p className="section-description">
             Here are some of my recent projects that showcase my skills and expertise in 
             developing modern, responsive web applications.
           </p>
         </div>
 
-        <div className="flex justify-center mb-10">
-          <div className="flex flex-wrap gap-3 justify-center">
+        <div className="flex justify-center mb-12">
+          <div className="flex flex-wrap gap-3 justify-center p-1 bg-secondary/50 backdrop-blur-sm rounded-full">
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setActiveCategory(category)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                   activeCategory === category
                     ? "bg-primary text-white shadow-md"
-                    : "bg-secondary hover:bg-secondary/80 text-foreground/80"
+                    : "hover:bg-secondary/80 text-foreground/80"
                 }`}
               >
                 {category.charAt(0).toUpperCase() + category.slice(1)}
@@ -101,7 +101,7 @@ const Projects = () => {
           {filteredProjects.map((project) => (
             <div
               key={project.id}
-              className="neo-card hover-card overflow-hidden reveal"
+              className="group overflow-hidden rounded-xl bg-white shadow-lg hover:shadow-xl transition-all duration-500 reveal"
               onMouseEnter={() => setHoveredId(project.id)}
               onMouseLeave={() => setHoveredId(null)}
             >
@@ -109,12 +109,9 @@ const Projects = () => {
                 <img
                   src={project.imageUrl}
                   alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-700 ease-in-out"
-                  style={{
-                    transform: hoveredId === project.id ? "scale(1.05)" : "scale(1)",
-                  }}
+                  className="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                   <div className="p-6 w-full">
                     <div className="flex gap-4 justify-end">
                       {project.githubUrl && (
@@ -122,10 +119,10 @@ const Projects = () => {
                           href={project.githubUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-white hover:text-primary transition-colors duration-300"
+                          className="p-2 bg-white/10 backdrop-blur-md rounded-full hover:bg-white/20 transition-colors duration-300"
                           aria-label="View on GitHub"
                         >
-                          <Github className="h-5 w-5" />
+                          <Github className="h-5 w-5 text-white" />
                         </a>
                       )}
                       {project.liveUrl && (
@@ -133,10 +130,10 @@ const Projects = () => {
                           href={project.liveUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-white hover:text-primary transition-colors duration-300"
+                          className="p-2 bg-white/10 backdrop-blur-md rounded-full hover:bg-white/20 transition-colors duration-300"
                           aria-label="View live site"
                         >
-                          <ExternalLink className="h-5 w-5" />
+                          <Eye className="h-5 w-5 text-white" />
                         </a>
                       )}
                     </div>
@@ -144,13 +141,13 @@ const Projects = () => {
                 </div>
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold mb-3">{project.title}</h3>
-                <p className="text-foreground/70 mb-4">{project.description}</p>
+                <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors duration-300">{project.title}</h3>
+                <p className="text-foreground/70 mb-4 line-clamp-2">{project.description}</p>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.technologies.map((tech, index) => (
                     <span
                       key={index}
-                      className="text-xs font-medium px-2 py-1 bg-secondary rounded-full"
+                      className="text-xs font-medium px-3 py-1 bg-secondary rounded-full"
                     >
                       {tech}
                     </span>
@@ -172,12 +169,12 @@ const Projects = () => {
           ))}
         </div>
 
-        <div className="text-center mt-12">
+        <div className="text-center mt-16">
           <a
             href="https://github.com/priteshyadav444"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-secondary px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-lg hover:bg-secondary/80"
+            className="btn-secondary inline-flex"
           >
             View All Projects
             <ArrowRight className="h-4 w-4" />
